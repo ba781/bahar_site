@@ -1,0 +1,71 @@
+/*****************************
+Frontend Overrides
+******************************/
+
+media-item.zoomable:active::part(media){
+    opacity:unset;
+}
+
+.page.overlay[editing="true"] bodycopy,
+.page.fixed[editing="true"] bodycopy {
+    pointer-events: auto !important;
+}
+
+
+[editing="true"] media-item {
+    pointer-events:auto;
+}
+
+[editing="true"] [blog-gallery] media-item {
+    pointer-events: none;
+}
+
+body.editing media-item::part(iframe){
+    pointer-events:none!important;
+}
+
+/*****************************
+Necessary CSS For Editor shadow dom elements
+******************************/
+
+body {
+    --selection-color:rgba(129, 188, 255, 0.6); 
+}
+::selection {
+    background-color: var(--selection-color);
+}
+
+body.dragging,
+body.dragging *,
+body.dragging a,
+body.dragging ::part(link) {
+    cursor:ew-resize!important;
+}
+
+/* "Lorem Ipsum" Text for Empty pages in the admin */
+bodycopy[contenteditable="true"].empty-editor:after {
+   /* content: "Lorem ipsum…"; */
+    cursor: text;
+    opacity: 0.4;
+    width: 0;
+    overflow: visible;
+    white-space: nowrap;
+}
+
+bodycopy[contenteditable="true"].empty-editor br {
+    display: none;
+}
+
+/* Content Testing IFRAME */
+#contentEditableStyleTester {
+    top: 0;
+}
+
+#editor-overlay.selecting {
+    pointer-events:none!important;
+}
+
+body.mobile #editor-overlay {
+    --baseColor-accent-rgb: 0, 122, 255;
+    --baseColor-accent2-rgb: 255, 0, 0;
+}
